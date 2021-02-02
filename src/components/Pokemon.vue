@@ -34,7 +34,7 @@ Pokelist
 
 data(){
 return {
-imageUrl: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/',
+imageUrl: 'https://pokeres.bastionbot.org/images/pokemon/',
 apiUrl: 'https://pokeapi.co/api/v2/pokemon/',
 }
 },
