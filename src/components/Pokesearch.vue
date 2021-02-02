@@ -22,7 +22,7 @@ props: ["apiUrl"],
 
 /* All Screen Sizes */
 .searchbar .poke-search{
-position: relative;    
+position: relative;
 width: 35vw;
 padding: 10px 4px;
 font-size: 16px;
@@ -35,7 +35,7 @@ outline: none;
 position: absolute;
 top: 90px;
 right: 500px;
-color: black; 
+color: black;
 cursor: pointer;
 }
 
@@ -43,7 +43,7 @@ cursor: pointer;
 @media (max-width: 690px) {
 
 .searchbar .poke-search{
-position: relative;    
+position: relative;
 width: 70vw;
 padding: 10px 5px;
 font-size: 16px;
@@ -56,15 +56,15 @@ outline: none;
 position: absolute;
 top: 90px;
 right: 65px;
-color: black; 
+color: black;
 }
 
-} 
+}
 
 /* Ipad and other tablets*/
 @media only screen and (max-width: 800px) and (min-width: 700px) {
 .searchbar .poke-search{
-position: relative;    
+position: relative;
 width: 70vw;
 padding: 12px 5px;
 font-size: 16px;
@@ -77,15 +77,15 @@ outline: none;
 position: absolute;
 top: 90px;
 right: 126px;
-color: black; 
-}    
-}    
+color: black;
+}
+}
 
 /* Ipad Pro */
 @media only screen and (max-width: 1100px) and (min-width: 1000px) {
 
 .searchbar .poke-search{
-position: relative;    
+position: relative;
 width: 61.5vw;
 padding: 13px 5px;
 font-size: 16px;
@@ -98,10 +98,10 @@ outline: none;
 position: absolute;
 top: 92px;
 right: 210px;
-color: black; 
-}      
+color: black;
+}
 
-}    
+}
 
 
 

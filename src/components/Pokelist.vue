@@ -1,23 +1,18 @@
 <template>
+
 <div class="pokewrapper">
-
-<!-- Pokemon Modal -->
-<div class="pokemodal" v-if="show">
-<h1>dfsdgdgds</h1>    
-</div>
-
 
     <div class="pokelist"
 
     v-for="(pokemon, index) in pokemons"
 
     :key="pokemon + index"
-    
-    @click="openModal">
 
-    <img 
+    @click="openModal()">
 
-    :src="imageUrl + pokemon.id + '.png'" 
+    <img
+
+    :src="imageUrl + pokemon.id + '.png'"
 
     width="50" height="50"
     >
@@ -40,6 +35,7 @@ export default {
 name: 'Pokelist',
 
 props: [
+ "showModal",
  "apiUrl",
  "imageUrl"
 ],
@@ -48,7 +44,6 @@ data() {
 return {
 pokemons: [],
 id: 1,
-show: false,
 }
 },
 
@@ -75,17 +70,17 @@ elem.id = str[6];
 addId() {
 this.pokemons.forEach(elem => {
 return elem;
-}) 
+})
 },
-
-openModal() {
-this.show = ! this.show;
-},
-
 
 // Make first letter uppercase
 toUpperCase(str) {
 return str.charAt(0).toUpperCase() + str.slice(1);
+},
+
+// Toggle Boolean from Parent element
+openModal() {
+this.$emit('toggleModal', 'showModal');
 }
 
 
@@ -106,13 +101,23 @@ this.addId();
 <style scoped>
 
 /* All Screen Sizes */
-.pokewrapper{
+/* .pokewrapper{
 color: black;
 border-radius: 5px;
 margin: 20px auto;
 display: flex;
 flex-wrap: wrap;
 width: 36vw;
+text-align: center;
+} */
+
+.pokewrapper{
+color: black;
+border-radius: 5px;
+margin: 20px auto;
+display: flex;
+flex-wrap: wrap;
+width: 39vw;
 text-align: center;
 }
 
@@ -124,16 +129,13 @@ padding: 10px;
 margin: 5px;
 border-radius: 5px;
 cursor: pointer;
-}  
+}
 
 .pokewrapper .pokelist:hover{
 background: red;
 color: #fff;
 }
 
-.pokemodal{
-background: #fff;    
-}
 
 /* Phones */
 @media (max-width: 690px) {
@@ -179,7 +181,7 @@ margin: 5px;
 border-radius: 5px;
 cursor: pointer;
 }
-}    
+}
 
 /* Ipad Pro */
 @media only screen and (max-width: 1100px) and (min-width: 1000px) {
@@ -201,8 +203,8 @@ padding: 10px;
 margin: 5px;
 border-radius: 5px;
 cursor: pointer;
-}    
-}    
+}
+}
 
 
 

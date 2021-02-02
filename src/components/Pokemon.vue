@@ -10,10 +10,17 @@
 
 <!-- List of all pokemons -->
 <Pokelist
+:showModal="showModal"
 :apiUrl="apiUrl"
 :imageUrl="imageUrl"
+@toggleModal="openModal()"
 />
 
+<!-- Pokemon Modal -->
+<Pokemodal
+:showModal="showModal"
+:imageUrl="imageUrl"
+/>
 
 </div>
 </template>
@@ -23,19 +30,28 @@
 // Importing Components
 import Pokesearch from './Pokesearch.vue'
 import Pokelist from './Pokelist.vue'
+import Pokemodal from './Pokemodal.vue'
 
 export default {
 name: 'Pokemon',
 
 components: {
 Pokesearch,
-Pokelist
+Pokelist,
+Pokemodal,
 },
 
 data(){
 return {
 imageUrl: 'https://pokeres.bastionbot.org/images/pokemon/',
 apiUrl: 'https://pokeapi.co/api/v2/pokemon/',
+showModal: false,
+}
+},
+
+methods: {
+openModal() {
+this.showModal = true;
 }
 },
 
