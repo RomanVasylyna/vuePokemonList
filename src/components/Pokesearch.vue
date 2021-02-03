@@ -1,7 +1,7 @@
 <template>
   <div class="searchbar">
-    <form>
-      <input type="text" class="poke-search" placeholder="Search Pokemon">
+    <form @submit.prevent="findPokemon">
+      <input type="text" class="poke-search" placeholder="Search Pokemon" v-model="searchVal">
     </form>
     <i class="fas fa-search"></i>
   </div>
@@ -13,6 +13,21 @@ export default {
 name: 'Pokesearch',
 
 props: ["apiUrl"],
+
+data() {
+return {
+searchVal: ''  
+}  
+},
+
+methods: {
+  
+// Transferring the search value to Parent Elem  
+findPokemon() {
+this.$emit('setPokemon', this.apiUrl + this.searchVal);
+}
+
+},
 
 }
 </script>

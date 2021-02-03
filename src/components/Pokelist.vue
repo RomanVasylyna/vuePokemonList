@@ -101,7 +101,7 @@ this.addId();
 <style scoped>
 
 /* All Screen Sizes */
-/* .pokewrapper{
+.pokewrapper{
 color: black;
 border-radius: 5px;
 margin: 20px auto;
@@ -109,9 +109,9 @@ display: flex;
 flex-wrap: wrap;
 width: 36vw;
 text-align: center;
-} */
+}
 
-.pokewrapper{
+/* .pokewrapper{
 color: black;
 border-radius: 5px;
 margin: 20px auto;
@@ -119,7 +119,7 @@ display: flex;
 flex-wrap: wrap;
 width: 39vw;
 text-align: center;
-}
+} */
 
 .pokewrapper .pokelist{
 text-align: center;

@@ -6,6 +6,7 @@
 <!-- Searchbar -->
 <Pokesearch
 :apiUrl="apiUrl"
+@setPokemon="getPokemon"
 />
 
 <!-- List of all pokemons -->
@@ -20,6 +21,7 @@
 <Pokemodal
 :showModal="showModal"
 :imageUrl="imageUrl"
+@removeModal="closeModal"
 />
 
 </div>
@@ -52,8 +54,17 @@ showModal: false,
 methods: {
 openModal() {
 this.showModal = true;
+},
+
+closeModal() {
+this.showModal = false;    
+},
+
+getPokemon(url) {
+console.log(url);
 }
 },
+
 
 
 
