@@ -24,7 +24,9 @@ methods: {
   
 // Transferring the search value to Parent Elem  
 findPokemon() {
-this.$emit('setPokemon', this.apiUrl + this.searchVal);
+if(this.searchVal !== '') { //Making sure string is not empty
+this.$emit('setPokemon', this.apiUrl + this.searchVal); 
+}  
 }
 
 },

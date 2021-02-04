@@ -6,11 +6,11 @@
 
 <!-- Pokemon Image -->
 <div class="img-wrapper">
-<img src="https://pokeres.bastionbot.org/images/pokemon/5.png" alt="" width="65" height="65">
+<img :src="image" alt="" width="65" height="65">
 </div>
 
 <!-- Pokemon's Name -->
-<h2 class="name">Bulbasaur</h2>
+<h2 class="name">{{ pokemon.forms[0].name }}</h2>
 
 <!-- Stats -->
 <div class="stats">
@@ -18,19 +18,19 @@
 <!-- Experience -->
 <div class="exp">      
 <p>Base Experience</p>  
-<p>64xp</p>
+<p>{{ pokemon.base_experience }}xp</p>
 </div>  
 
 <!-- Height -->
 <div class="height">      
 <p>Height</p>  
-<p>0.7m</p>
+<p>{{ pokemon.height / 10 }}m</p>
 </div> 
 
 <!-- Weight -->
 <div class="weight">      
 <p>Weight</p>  
-<p>6.9kg</p>
+<p>{{ pokemon.weight / 10 }}kg</p>
 </div> 
 
 </div>
@@ -42,8 +42,8 @@
 
 <!-- Buttons for Types -->
 <div class="types-buttons">
-<button class="type-btn">Grass</button>
-<button class="type-btn">Poison</button>
+<button class="type-btn">{{ pokemon.types[0].type.name}}</button>
+<button class="type-btn">{{ pokemon.types[1].type.name}}</button>
 </div>
 
 <!-- Pokemon Abilities -->
@@ -53,8 +53,8 @@
 
 <!-- Buttons for Abilities -->
 <div class="abilities-buttons">
-<button class="ability-btn">Overgrow</button>
-<button class="ability-btn">Chlorophyll</button>
+<button class="ability-btn">{{ pokemon.abilities[0].ability.name}}</button>
+<button class="ability-btn">{{ pokemon.abilities[1].ability.name}}</button>
 </div>
 
 <!-- Close Modal -->
@@ -73,30 +73,44 @@ name: 'Pokemodal',
 
 props: [
  "showModal",
- "imageUrl"
+ "imageUrl",
+ "pokemonUrl"
 ],
 
 data() {
 return {
-pokemon: {} //Individual Pokemon
+pokemon: {}, //Individual Pokemon
+image: '',
 }
 },
 
 methods: {
-// Getting Pokemons from API    
+// Getting Particular Pokemon from   
 fetchData() {
+fetch('https://pokeapi.co/api/v2/pokemon/pikachu')
+.then(res => res.json())
 
+.then(data => {
+this.pokemon = data;
+this.image = this.pokemon.sprites.front_default;
+// this.showModal = true;
+console.log(data);
+})
+
+.catch(err => console.log(err))
 },
 
 modalClose() {
 this.$emit('removeModal', 'showModal'); 
-}
+},
 
 },
 
 // Run Fetch request as soon as the element is created
 created() {
-this.fetchData();    
+// if(this.showModal) {
+this.fetchData();  
+// }      
 }
 
 }

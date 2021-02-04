@@ -11,7 +11,7 @@
 
 <!-- List of all pokemons -->
 <Pokelist
-:showModal="showModal"
+:showModal="showModal" 
 :apiUrl="apiUrl"
 :imageUrl="imageUrl"
 @toggleModal="openModal()"
@@ -22,6 +22,8 @@
 :showModal="showModal"
 :imageUrl="imageUrl"
 @removeModal="closeModal"
+@setPokemon="getPokemon"
+:pokemonUrl="pokemonUrl"
 />
 
 </div>
@@ -47,7 +49,8 @@ data(){
 return {
 imageUrl: 'https://pokeres.bastionbot.org/images/pokemon/',
 apiUrl: 'https://pokeapi.co/api/v2/pokemon/',
-showModal: false,
+showModal: false, //Toggle Modal 
+pokemonUrl: ''
 }
 },
 
@@ -61,6 +64,8 @@ this.showModal = false;
 },
 
 getPokemon(url) {
+// this.showModal = true;
+this.pokemonUrl = url;
 console.log(url);
 }
 },
