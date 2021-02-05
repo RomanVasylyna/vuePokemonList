@@ -10,20 +10,20 @@
 />
 
 <!-- List of all pokemons -->
-<Pokelist
+<!-- <Pokelist
 :showModal="showModal" 
 :apiUrl="apiUrl"
 :imageUrl="imageUrl"
 @toggleModal="openModal()"
-/>
+/> -->
 
 <!-- Pokemon Modal -->
 <Pokemodal
 :showModal="showModal"
-:imageUrl="imageUrl"
+:pokemonUrl="pokemonUrl"
+:pokemon="pokemon"
 @removeModal="closeModal"
 @setPokemon="getPokemon"
-:pokemonUrl="pokemonUrl"
 />
 
 </div>
@@ -33,7 +33,7 @@
 <script>
 // Importing Components
 import Pokesearch from './Pokesearch.vue'
-import Pokelist from './Pokelist.vue'
+// import Pokelist from './Pokelist.vue'
 import Pokemodal from './Pokemodal.vue'
 
 export default {
@@ -41,20 +41,38 @@ name: 'Pokemon',
 
 components: {
 Pokesearch,
-Pokelist,
+// Pokelist,
 Pokemodal,
 },
 
 data(){
 return {
-imageUrl: 'https://pokeres.bastionbot.org/images/pokemon/',
 apiUrl: 'https://pokeapi.co/api/v2/pokemon/',
 showModal: false, //Toggle Modal 
-pokemonUrl: ''
+pokemonUrl: '',
+pokemon: {},
 }
 },
 
 methods: {
+
+fetchData() {
+fetch(this.pokemonUrl)
+.then(res => res.json())
+
+.then(data => {
+if(Object.keys(data).length !== 0) {
+this.pokemon = data;
+this.showModal = true; //Open Modal
+console.log(typeof data);   
+} else {
+alert('Error occured');  
+}  
+})
+
+.catch(err => console.log(err))
+},
+
 openModal() {
 this.showModal = true;
 },
@@ -63,9 +81,9 @@ closeModal() {
 this.showModal = false;    
 },
 
-getPokemon(url) {
-// this.showModal = true;
-this.pokemonUrl = url;
+getPokemon(url) { // url = apiUrl + searchVal
+this.pokemonUrl = url; //Mutating pokemonUrl variable for all elements
+this.fetchData();
 console.log(url);
 }
 },

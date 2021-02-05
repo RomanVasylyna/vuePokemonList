@@ -43,7 +43,6 @@ props: [
 data() {
 return {
 pokemons: [],
-id: 1,
 }
 },
 
@@ -71,11 +70,6 @@ addId() {
 this.pokemons.forEach(elem => {
 return elem;
 })
-},
-
-// Make first letter uppercase
-toUpperCase(str) {
-return str.charAt(0).toUpperCase() + str.slice(1);
 },
 
 // Toggle Boolean from Parent element

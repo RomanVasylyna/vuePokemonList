@@ -16,7 +16,7 @@ props: ["apiUrl"],
 
 data() {
 return {
-searchVal: ''  
+searchVal: '',  
 }  
 },
 
@@ -25,8 +25,10 @@ methods: {
 // Transferring the search value to Parent Elem  
 findPokemon() {
 if(this.searchVal !== '') { //Making sure string is not empty
-this.$emit('setPokemon', this.apiUrl + this.searchVal); 
-}  
+this.$emit('setPokemon', this.apiUrl + this.searchVal.toLowerCase()); 
+} else {
+alert('Value cannot be empty');  
+} 
 }
 
 },

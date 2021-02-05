@@ -6,11 +6,11 @@
 
 <!-- Pokemon Image -->
 <div class="img-wrapper">
-<img :src="image" alt="" width="65" height="65">
+<img :src="this.pokemon.sprites.front_default" alt="" width="100" height="100">
 </div>
 
 <!-- Pokemon's Name -->
-<h2 class="name">{{ pokemon.forms[0].name }}</h2>
+<h2 class="name">{{ toUpperCase(pokemon.name) }}</h2>
 
 <!-- Stats -->
 <div class="stats">
@@ -42,8 +42,11 @@
 
 <!-- Buttons for Types -->
 <div class="types-buttons">
-<button class="type-btn">{{ pokemon.types[0].type.name}}</button>
-<button class="type-btn">{{ pokemon.types[1].type.name}}</button>
+<button class="type-btn" 
+v-for="(type, index) in pokemon.types" 
+:key="type+index">
+{{ toUpperCase(pokemon.types[index].type.name)}}
+</button>
 </div>
 
 <!-- Pokemon Abilities -->
@@ -53,8 +56,11 @@
 
 <!-- Buttons for Abilities -->
 <div class="abilities-buttons">
-<button class="ability-btn">{{ pokemon.abilities[0].ability.name}}</button>
-<button class="ability-btn">{{ pokemon.abilities[1].ability.name}}</button>
+<button class="ability-btn" 
+v-for="(ability, index) in pokemon.abilities" 
+:key="ability+index">
+{{ toUpperCase(pokemon.abilities[index].ability.name)}}
+</button>
 </div>
 
 <!-- Close Modal -->
@@ -64,6 +70,12 @@
 </div>
 
 </div>
+
+
+<!-- Error Modal -->
+
+
+
 </template>
 
 
@@ -74,44 +86,31 @@ name: 'Pokemodal',
 props: [
  "showModal",
  "imageUrl",
- "pokemonUrl"
+ "pokemonUrl",
+ "pokemon"
 ],
 
 data() {
 return {
-pokemon: {}, //Individual Pokemon
 image: '',
+name: '',
 }
 },
-
+// this.pokemonUrl
 methods: {
-// Getting Particular Pokemon from   
-fetchData() {
-fetch('https://pokeapi.co/api/v2/pokemon/pikachu')
-.then(res => res.json())
 
-.then(data => {
-this.pokemon = data;
-this.image = this.pokemon.sprites.front_default;
-// this.showModal = true;
-console.log(data);
-})
-
-.catch(err => console.log(err))
+// Make first letter uppercase
+toUpperCase(str) {
+return str.charAt(0).toUpperCase() + str.slice(1);
 },
 
+// Emitting an event to parent element
 modalClose() {
-this.$emit('removeModal', 'showModal'); 
+this.$emit('removeModal'); 
 },
 
-},
 
-// Run Fetch request as soon as the element is created
-created() {
-// if(this.showModal) {
-this.fetchData();  
-// }      
-}
+},
 
 }
 </script>
@@ -150,7 +149,7 @@ margin-top: -70px;
 
 .pokemodal-body .img-wrapper img{
 position: relative;    
-top: 20px;
+top: 7px;
 }
 
 .pokemodal-body .name{
