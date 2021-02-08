@@ -3,7 +3,7 @@
     <form @submit.prevent="findPokemon">
       <input type="text" class="poke-search" placeholder="Search Pokemon" v-model="searchVal">
     </form>
-    <i class="fas fa-search"></i>
+    <i @click="alert('gdsgds')" class="fas fa-search"></i>
   </div>
 </template>
 
@@ -16,20 +16,20 @@ props: ["apiUrl"],
 
 data() {
 return {
-searchVal: '',  
-}  
+searchVal: '',
+}
 },
 
 methods: {
-  
-// Transferring the search value to Parent Elem  
+
+// Transferring the search value to Parent Elem
 findPokemon() {
 if(this.searchVal !== '') { //Making sure string is not empty
-this.$emit('setPokemon', this.apiUrl + this.searchVal.toLowerCase()); 
+this.$emit('setPokemon', this.apiUrl + this.searchVal.toLowerCase());
 this.searchVal = '';
 } else {
-alert('Value cannot be empty');  
-} 
+alert('Value cannot be empty');
+}
 }
 
 },

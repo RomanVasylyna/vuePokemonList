@@ -36,20 +36,21 @@ name: 'Pokelist',
 
 props: [
  "apiUrl",
- "imageUrl"
+ "imageUrl",
+ "list",
 ],
 
 data() {
 return {
-pokemons: [],
+pokemons: []
 }
 },
 
 methods: {
 
 toUpperCase(str) {
-return str.charAt(0).toUpperCase() + str.slice(1);    
-},      
+return str.charAt(0).toUpperCase() + str.slice(1);
+},
 
 // Get data from API
 fetchData() {
@@ -63,7 +64,7 @@ this.pokemons.forEach(elem => {
 let str = elem.url.split('/');
 elem.id = str[6];
 })
-console.log(this.pokemons);
+this.$emit('appendPokemon', this.pokemons); //Transfer pokemons array to parent elem
 })
 
 .catch(err => console.log(err))
@@ -85,9 +86,9 @@ this.$emit('toggleModal', index);
 },
 
 // Assigning api values to array
-mounted() {     
+mounted() {
 this.fetchData();
-this.addId();   
+this.addId();
 }
 
 
@@ -109,15 +110,6 @@ width: 36vw;
 text-align: center;
 }
 
-/* .pokewrapper{
-color: black;
-border-radius: 5px;
-margin: 20px auto;
-display: flex;
-flex-wrap: wrap;
-width: 39vw;
-text-align: center;
-} */
 
 .pokewrapper .pokelist{
 text-align: center;
@@ -160,13 +152,14 @@ cursor: pointer;
 
 /* Ipad and other tablets*/
 @media only screen and (max-width: 800px) and (min-width: 700px) {
+
 .pokewrapper{
 color: black;
 border-radius: 5px;
 margin: 20px auto;
 display: flex;
 flex-wrap: wrap;
-width: 60vw;
+width: 72vw;
 text-align: center;
 }
 
@@ -174,7 +167,7 @@ text-align: center;
 text-align: center;
 width: 25vw;
 background: #fff;
-padding: 10px;
+padding: 10px 35px;
 margin: 5px;
 border-radius: 5px;
 cursor: pointer;
@@ -183,6 +176,7 @@ cursor: pointer;
 
 /* Ipad Pro */
 @media only screen and (max-width: 1100px) and (min-width: 1000px) {
+
 .pokewrapper{
 color: black;
 border-radius: 5px;
