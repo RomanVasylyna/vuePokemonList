@@ -26,6 +26,7 @@ methods: {
 findPokemon() {
 if(this.searchVal !== '') { //Making sure string is not empty
 this.$emit('setPokemon', this.apiUrl + this.searchVal.toLowerCase()); 
+this.searchVal = '';
 } else {
 alert('Value cannot be empty');  
 } 

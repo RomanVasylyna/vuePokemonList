@@ -1,4 +1,5 @@
 <template>
+
 <div class="pokemodal" v-if="showModal">
 
 <!-- Card itself -->
@@ -61,7 +62,8 @@ v-for="(ability, index) in pokemon.abilities"
 :key="ability+index">
 {{ toUpperCase(pokemon.abilities[index].ability.name)}}
 </button>
-</div>
+</div>  
+
 
 <!-- Close Modal -->
 <button class="modal-close" @click="modalClose">Close</button>
@@ -73,10 +75,26 @@ v-for="(ability, index) in pokemon.abilities"
 
 
 <!-- Error Modal -->
+<!-- <div class="error-modal" v-else>
+<div class="error-body">  
+<h1>Test</h1>
+<button class="modal-close" @click="modalClose">Close</button>
+</div>
+</div> -->
+
+
+
+
+
+    
+
+
 
 
 
 </template>
+
+
 
 
 <script>
@@ -118,6 +136,7 @@ this.$emit('removeModal');
 
 <style scoped>
 
+/* All Screen Sizes */
 .pokemodal{
 background: rgba(0, 0, 0, 0.7);
 position: fixed;
@@ -130,9 +149,9 @@ text-align: center;
 .pokemodal .pokemodal-body{
 background: #fff;
 color: black;
-width: 40vw;
+width: 36vw;
 margin: 100px auto;
-padding-bottom: 7vh;
+padding-bottom: 6vh;
 border-radius: 5px;
 }
 
@@ -160,7 +179,7 @@ padding-top: 10px;
 }
 
 .pokemodal .pokemodal-body .stats .exp, .height, .weight{  
-width: 35vw; 
+width: 30vw; 
 margin: auto;
 display: flex;
 justify-content: space-between;
@@ -169,7 +188,7 @@ border-bottom: 1px solid rgb(90, 90, 90);
 }
 
 .pokemodal .pokemodal-body .types-title, .abilities-title{ 
-width: 35vw; 
+width: 30vw; 
 margin: auto;
 display: flex;
 justify-content: start;
@@ -180,7 +199,7 @@ font-size: 1.2rem;
 }
 
 .types-buttons, .abilities-buttons{
-width: 35vw; 
+width: 30vw; 
 margin: auto;
 display: flex;
 }
@@ -222,5 +241,238 @@ border-radius: 5px;
 cursor: pointer;
 margin-top: 30px;
 }
+
+
+/* Phones */
+@media (max-width: 690px) {
+
+.pokemodal .pokemodal-body{
+background: #fff;
+color: black;
+width: 80vw;
+margin: 100px auto;
+padding-bottom: 1vh;
+border-radius: 5px;
+}   
+
+.pokemodal .pokemodal-body .stats .exp, .height, .weight{  
+width: 55vw; 
+margin: auto;
+display: flex;
+justify-content: space-between;
+font-weight: bold;
+border-bottom: 1px solid rgb(90, 90, 90); 
+}
+
+.pokemodal .pokemodal-body .types-title, .abilities-title{ 
+width: 55vw; 
+margin: auto;
+display: flex;
+justify-content: start;
+border-bottom: 1px solid rgb(170, 169, 169); 
+height: 6.5vh;
+font-weight: 900;    
+font-size: 1.2rem;
+}
+
+.types-buttons, .abilities-buttons{
+width: 60vw; 
+margin: auto;
+display: flex;
+}
+
+.types-buttons .type-btn{
+margin-top: 15px; 
+border-radius: 50px;   
+background-color: rgb(22, 22, 82);
+color: #fff;
+border:none;
+outline: none;
+padding:7px 15px;
+font-size: 16px;
+font-weight: bold;
+margin:10px 5px;
+}
+
+.abilities-buttons .ability-btn{
+margin-top: 15px; 
+border-radius: 50px;   
+background-color: rgb(206, 10, 20);
+color: #fff;
+border:none;
+outline: none;
+padding:7px 10px;
+font-size: 16px;
+font-weight: bold;
+margin:10px 5px;
+}
+
+.modal-close{
+background: rgb(53, 53, 53); 
+color: #fff;   
+border: none;
+outline: none;
+padding:10px 15px;
+font-size: 16px;
+border-radius: 5px;
+cursor: pointer;
+margin-top: 10px;
+}
+
+}    
+
+/* Ipad and other tablets*/
+@media only screen and (max-width: 800px) and (min-width: 700px) {
+
+.pokemodal .pokemodal-body{
+background: #fff;
+color: black;
+width:70vw;
+margin: 100px auto;
+padding-bottom: 1vh;
+border-radius: 5px;
+}   
+
+.pokemodal .pokemodal-body .stats .exp, .height, .weight{  
+width: 55vw; 
+margin: auto;
+display: flex;
+justify-content: space-between;
+font-weight: bold;
+border-bottom: 1px solid rgb(90, 90, 90); 
+}
+
+.pokemodal .pokemodal-body .types-title, .abilities-title{ 
+width: 55vw; 
+margin: auto;
+display: flex;
+justify-content: start;
+border-bottom: 1px solid rgb(170, 169, 169); 
+height: 6.5vh;
+font-weight: 900;    
+font-size: 1.2rem;
+}
+
+.types-buttons, .abilities-buttons{
+width: 55vw; 
+margin: auto;
+display: flex;
+}
+
+.types-buttons .type-btn{
+margin-top: 15px; 
+border-radius: 50px;   
+background-color: rgb(22, 22, 82);
+color: #fff;
+border:none;
+outline: none;
+padding:7px 15px;
+font-size: 16px;
+font-weight: bold;
+margin:10px 5px;
+}
+
+.abilities-buttons .ability-btn{
+margin-top: 15px; 
+border-radius: 50px;   
+background-color: rgb(206, 10, 20);
+color: #fff;
+border:none;
+outline: none;
+padding:7px 10px;
+font-size: 16px;
+font-weight: bold;
+margin:10px 5px;
+}
+
+.modal-close{
+background: rgb(53, 53, 53); 
+color: #fff;   
+border: none;
+outline: none;
+padding:10px 15px;
+font-size: 16px;
+border-radius: 5px;
+cursor: pointer;
+margin-top: 10px;
+}    
+}    
+
+
+/* Ipad Pro */
+@media only screen and (max-width: 1100px) and (min-width: 1000px) {
+
+.pokemodal .pokemodal-body{
+background: #fff;
+color: black;
+width:60vw;
+margin: 100px auto;
+padding-bottom: 1vh;
+border-radius: 5px;
+}   
+
+.pokemodal .pokemodal-body .stats .exp, .height, .weight{  
+width: 50vw; 
+margin: auto;
+display: flex;
+justify-content: space-between;
+font-weight: bold;
+border-bottom: 1px solid rgb(90, 90, 90); 
+}
+
+.pokemodal .pokemodal-body .types-title, .abilities-title{ 
+width: 50vw; 
+margin: auto;
+display: flex;
+justify-content: start;
+border-bottom: 1px solid rgb(170, 169, 169); 
+height: 4vh;
+font-weight: 900;    
+font-size: 1.2rem;
+}
+
+.types-buttons, .abilities-buttons{
+width: 50vw; 
+margin: auto;
+display: flex;
+}
+
+.types-buttons .type-btn{
+border-radius: 50px;   
+background-color: rgb(22, 22, 82);
+color: #fff;
+border:none;
+outline: none;
+padding:7px 15px;
+font-size: 16px;
+font-weight: bold;
+margin:10px 5px;
+}
+
+.abilities-buttons .ability-btn{
+margin-top: 15px; 
+border-radius: 50px;   
+background-color: rgb(206, 10, 20);
+color: #fff;
+border:none;
+outline: none;
+padding:7px 10px;
+font-size: 16px;
+font-weight: bold;
+margin:10px 5px;
+}
+
+.modal-close{
+background: rgb(53, 53, 53); 
+color: #fff;   
+border: none;
+outline: none;
+padding:10px 15px;
+font-size: 16px;
+border-radius: 5px;
+cursor: pointer;
+margin-top: 10px;
+}        
+}    
 
 </style>

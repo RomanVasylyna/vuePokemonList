@@ -10,12 +10,11 @@
 />
 
 <!-- List of all pokemons -->
-<!-- <Pokelist
-:showModal="showModal" 
+<Pokelist
 :apiUrl="apiUrl"
 :imageUrl="imageUrl"
-@toggleModal="openModal()"
-/> -->
+@toggleModal="openModal"
+/>
 
 <!-- Pokemon Modal -->
 <Pokemodal
@@ -33,7 +32,7 @@
 <script>
 // Importing Components
 import Pokesearch from './Pokesearch.vue'
-// import Pokelist from './Pokelist.vue'
+import Pokelist from './Pokelist.vue'
 import Pokemodal from './Pokemodal.vue'
 
 export default {
@@ -41,49 +40,53 @@ name: 'Pokemon',
 
 components: {
 Pokesearch,
-// Pokelist,
+Pokelist,
 Pokemodal,
 },
 
 data(){
 return {
 apiUrl: 'https://pokeapi.co/api/v2/pokemon/',
+imageUrl:'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/',
 showModal: false, //Toggle Modal 
 pokemonUrl: '',
 pokemon: {},
 }
 },
 
-methods: {
+methods: {   
 
-fetchData() {
-fetch(this.pokemonUrl)
-.then(res => res.json())
+fetchData(url) {
+fetch(url)
+.then(res => {
+if(res.status === 200) {   
+this.showModal = true;          
+return res.json();    
+}
+})
 
-.then(data => {
-if(Object.keys(data).length !== 0) {
-this.pokemon = data;
-this.showModal = true; //Open Modal
-console.log(typeof data);   
-} else {
-alert('Error occured');  
-}  
+.then(data => {     
+this.pokemon = data;        
+console.log(this.pokemon);   
 })
 
 .catch(err => console.log(err))
 },
 
-openModal() {
+openModal(result) { 
+this.pokemonUrl = this.apiUrl + result;      
+this.fetchData(this.pokemonUrl);            
 this.showModal = true;
+console.log(this.pokemonUrl);
 },
 
-closeModal() {
-this.showModal = false;    
+closeModal() {   
+this.showModal = false;
 },
 
 getPokemon(url) { // url = apiUrl + searchVal
 this.pokemonUrl = url; //Mutating pokemonUrl variable for all elements
-this.fetchData();
+this.fetchData(this.pokemonUrl);
 console.log(url);
 }
 },

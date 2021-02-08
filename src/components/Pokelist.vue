@@ -8,13 +8,13 @@
 
     :key="pokemon + index"
 
-    @click="openModal()">
+    @click="openModal(pokemon.name, index)">
 
     <img
 
     :src="imageUrl + pokemon.id + '.png'"
 
-    width="50" height="50"
+    width="100" height="100"
     >
 
     <h3>
@@ -35,7 +35,6 @@ export default {
 name: 'Pokelist',
 
 props: [
- "showModal",
  "apiUrl",
  "imageUrl"
 ],
@@ -47,6 +46,10 @@ pokemons: [],
 },
 
 methods: {
+
+toUpperCase(str) {
+return str.charAt(0).toUpperCase() + str.slice(1);    
+},      
 
 // Get data from API
 fetchData() {
@@ -60,6 +63,7 @@ this.pokemons.forEach(elem => {
 let str = elem.url.split('/');
 elem.id = str[6];
 })
+console.log(this.pokemons);
 })
 
 .catch(err => console.log(err))
@@ -73,17 +77,17 @@ return elem;
 },
 
 // Toggle Boolean from Parent element
-openModal() {
-this.$emit('toggleModal', 'showModal');
+openModal(index) {
+this.$emit('toggleModal', index);
 }
 
 
 },
 
 // Assigning api values to array
-mounted() {
+mounted() {     
 this.fetchData();
-this.addId();
+this.addId();   
 }
 
 
@@ -119,7 +123,7 @@ text-align: center;
 text-align: center;
 width: 10vw;
 background: #fff;
-padding: 10px;
+padding: 5px 10px;
 margin: 5px;
 border-radius: 5px;
 cursor: pointer;
@@ -139,7 +143,7 @@ border-radius: 5px;
 margin: 20px auto;
 display: flex;
 flex-wrap: wrap;
-width: 45vw;
+width: 75vw;
 text-align: center;
 }
 
@@ -147,7 +151,7 @@ text-align: center;
 text-align: center;
 width: 40vw;
 background: #fff;
-padding: 10px;
+padding: 5px 60px;
 margin: 5px;
 border-radius: 5px;
 cursor: pointer;
