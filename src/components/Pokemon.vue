@@ -63,13 +63,8 @@ addPokemon(arr) {
 this.list = arr;
 },
 
-// Remove duplicates from array
-arrLoop(arr) {
-let newArr = [];
-arr.forEach(elem => {
-newArr.push(elem.name);
-});
-console.log(newArr);
+hasDuplicates(arr, obj) {
+return (arr.filter(e => e.name === obj.name).length) ? true : false;
 },
 
 fetchData(url) {
@@ -83,10 +78,13 @@ return res.json();
 
 .then(data => {
 this.pokemon = data;
+
 // Check if array has duplicates
+if(!this.hasDuplicates(this.list, this.pokemon)) {
 this.list.push(this.pokemon);
-this.arrLoop(this.list);
-console.log(this.pokemon);
+}
+// console.log(this.pokemon);
+// console.log(this.list);
 })
 
 .catch(err => console.log(err))

@@ -62,7 +62,7 @@ fetch(this.apiUrl)
 this.pokemons = dataJson.results;
 this.pokemons.forEach(elem => {
 let str = elem.url.split('/');
-elem.id = str[6];
+elem.id = Number(str[6]);
 })
 this.$emit('appendPokemon', this.pokemons); //Transfer pokemons array to parent elem
 })
